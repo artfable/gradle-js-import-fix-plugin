@@ -37,18 +37,14 @@ class GradleJsImportFixPlugin : Plugin<Project> {
                 file.forEachLine { line ->
                     var newLine = line
                     if (IMPORT_LINE_REGEXP.findAll(line).any()) {
-                        println("Original: " + line)
                         val splitLines = LinesSplitter(line).result
 
                         newLine = splitLines.lines().map { splitLine ->
                             IMPORT_REGEXP.matchEntire(splitLine)?.groupValues?.get(1)?.let { splitLine.replace(it, prefix + it) } ?: splitLine
                         }.joinToString("\n")
-
-                        println(newLine + '\n')
                     }
                     newLine += '\n'
-//                    tempFile.appendText(newLine)
-                    tempFile.appendText(line + '\n')
+                    tempFile.appendText(newLine)
                 }
                 tempFile.copyTo(file, true)
             }
