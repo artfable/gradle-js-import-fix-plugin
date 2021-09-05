@@ -1,5 +1,5 @@
 # Gradle JS Import Fix Plugin
-[ ![artifactory](https://img.shields.io/badge/Artifactory-v0.0.2-green) ](https://artfable.jfrog.io/ui/packages/gav:%2F%2Fcom.artfable.gradle:gradle-js-import-fix-plugin)
+[ ![artifactory](https://img.shields.io/badge/Artifactory-v0.1.1-green) ](https://artfable.jfrog.io/ui/packages/gav:%2F%2Fcom.artfable.gradle:gradle-js-import-fix-plugin)
 
 ## Overview
 Simple plugin that was written on [kotlin](https://kotlinlang.org). Some js libraries aren't adopted for es6 standard regarding import modules from file.
@@ -14,7 +14,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.artfable.gradle:gradle-js-import-fix-plugin:0.0.2"
+        classpath "com.artfable.gradle:gradle-js-import-fix-plugin:0.1.1"
     }
 }
 
@@ -29,7 +29,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.artfable.gradle:gradle-js-import-fix-plugin:0.0.2")
+        classpath("com.artfable.gradle:gradle-js-import-fix-plugin:0.1.1")
     }
 }
 apply(plugin = "artfable.js.import.fix")
