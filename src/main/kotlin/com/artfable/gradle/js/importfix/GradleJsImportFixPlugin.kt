@@ -6,8 +6,8 @@ import org.gradle.api.logging.Logger
 import java.io.File
 import java.lang.IllegalArgumentException
 
-private val IMPORT_REGEXP = Regex("import\\s?[^\"']*from\\s?['\"]([^./\"'][^\"']*)['\"];?")
-private val IMPORT_LINE_REGEXP = Regex("import\\s?[^\"']*from\\s?['\"][^./\"'][^\"']*['\"];?")
+private val IMPORT_REGEXP = Regex("(?:import|export)\\s?[^\"']*(?:from)?\\s?['\"]([^./\"'][^\"']*)['\"];?")
+private val IMPORT_LINE_REGEXP = Regex("(?:import|export)\\s?[^\"']*(?:from)?\\s?['\"][^./\"'][^\"']*['\"];?")
 
 class GradleJsImportFixPlugin : Plugin<Project> {
 
@@ -52,6 +52,13 @@ class GradleJsImportFixPlugin : Plugin<Project> {
             if (file.isDirectory) {
                 replacementStep(logger, file, if (prefix == "./") "../" else "$prefix../")
             }
+        }
+
+        if (dir.listFiles { path -> path.name.equals("index.js") }?.isEmpty() == true && dir.listFiles { path -> path.name.equals(dir.name + ".js") }?.isEmpty() == false) {
+            val indexFile = File(dir.absolutePath + File.separator + "index.js")
+            indexFile.createNewFile()
+
+            indexFile.writeText("import \"./${dir.name}.js\";\nexport * from \"./${dir.name}.js\";")
         }
     }
 }

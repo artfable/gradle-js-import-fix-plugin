@@ -1,5 +1,5 @@
 # Gradle JS Import Fix Plugin
-[ ![artifactory](https://img.shields.io/badge/Artifactory-v0.1.1-green) ](https://artfable.jfrog.io/ui/packages/gav:%2F%2Fcom.artfable.gradle:gradle-js-import-fix-plugin)
+[ ![artifactory](https://img.shields.io/badge/Artifactory-v0.2.0-green) ](https://artfable.jfrog.io/ui/packages/gav:%2F%2Fcom.artfable.gradle:gradle-js-import-fix-plugin)
 
 ## Overview
 Simple plugin that was written on [kotlin](https://kotlinlang.org). Some js libraries aren't adopted for es6 standard regarding import modules from file.
@@ -14,7 +14,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.artfable.gradle:gradle-js-import-fix-plugin:0.1.1"
+        classpath "com.artfable.gradle:gradle-js-import-fix-plugin:0.2.0"
     }
 }
 
@@ -29,7 +29,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.artfable.gradle:gradle-js-import-fix-plugin:0.1.1")
+        classpath("com.artfable.gradle:gradle-js-import-fix-plugin:0.2.0")
     }
 }
 apply(plugin = "artfable.js.import.fix")
@@ -56,3 +56,5 @@ configure<GradleJsImportFixExtension> { // jsImport {  // if plugin was added in
 ```
 
 where `directory` is a directory that should be scanned for the files.
+
+The plugin will also create `index.js` files for each directory if not provided and if js file with the same name as the directory is exists. 
